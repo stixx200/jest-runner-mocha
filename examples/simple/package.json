@@ -1,15 +1,15 @@
 {
   "license": "MIT",
   "devDependencies": {
-    "jest": "21.0.1",
-    "@kernel-panic/jest-runner-mocha": "2.1.0",
-    "mocha": "3.5.0",
+    "jest": "25.1.0",
+    "@kernel-panic/jest-runner-mocha": "^3.0.0",
+    "mocha": "7.0.1",
     "should": "13.0.0"
   },
   "scripts": {
     "test": "jest"
   },
   "jest": {
-    "runner": "jest-runner-mocha"
+    "runner": "@kernel-panic/jest-runner-mocha"
   }
 }

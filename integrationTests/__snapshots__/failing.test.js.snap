@@ -1,5 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Should fail v8 coverage on old node versions 1`] = `
+"FAIL integrationTests/__fixtures__/failing/__mocha__/__tests__/file.test.js
+● Test suite failed to run
+Node version v8.17.0 does not have coverage information!
+Please use node >= 10.12.0 or babel coverage.
+13 | async function collectV8Coverage() {
+14 | if (!semver.satisfies(process.version, '>= 10.12.0')) {
+> 15 | throw new Error(\`Node version \${process.version} does not have coverage information!
+| ^
+16 | Please use node >= 10.12.0 or babel coverage.\`);
+17 | }
+18 | v8CoverageInstrumenter = new CoverageInstrumenter();
+at mocked-stack-trace
+Test Suites: 1 failed, 1 total
+Tests: 0 total
+Snapshots: 0 total
+Time:
+Ran all test suites.
+
+----------|---------|----------|---------|---------|-------------------
+File | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
+----------|---------|----------|---------|---------|-------------------
+All files | 0 | 0 | 0 | 0 |
+----------|---------|----------|---------|---------|-------------------
+"
+`;
+
 exports[`Works when it has failing tests 1`] = `
 "FAIL integrationTests/__fixtures__/failing/__mocha__/__tests__/file.test.js
 My tests

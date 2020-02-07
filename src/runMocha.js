@@ -2,6 +2,7 @@ const Mocha = require('mocha');
 const { CoverageInstrumenter } = require('collect-v8-coverage');
 const { fileURLToPath } = require('url');
 const minimatch = require('minimatch');
+const semver = require('semver');
 const toTestResult = require('./utils/toTestResult');
 const setupCollectCoverage = require('./utils/setupCollectCoverage');
 const getMochaOptions = require('./utils/getMochaOptions');
@@ -10,8 +11,11 @@ async function runMocha({ config, testPath, globalConfig }) {
   let v8CoverageInstrumenter;
   let v8CoverageResult;
   async function collectV8Coverage() {
+    if (!semver.satisfies(process.version, '>= 10.12.0')) {
+      throw new Error(`Node version ${process.version} does not have coverage information!
+    Please use node >= 10.12.0 or babel coverage.`);
+    }
     v8CoverageInstrumenter = new CoverageInstrumenter();
-
     await v8CoverageInstrumenter.startInstrumenting();
   }
 

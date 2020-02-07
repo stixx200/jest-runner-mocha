@@ -1,14 +1,18 @@
-## master
+## Changelog
+
+
+## 3.1.1
+
+* Throw error when trying to use v8 coverage on incompatible node version.
+* Rename project to `jest-runner-mocha-next`.
 
 ## 3.1.0
 
-Experimental support for `--coverageProvider v8` option.
+* Experimental support for `--coverageProvider v8` option.
 
 ## 3.0.0
 
-Update all deps (can be breaking change), remove lock files, fix tests.
-
-Should be more stable now.
+* Update all deps (can be breaking change), remove lock files, fix tests. Should be more stable now.
 
 ## 2.1.2
 

@@ -1,3 +1,5 @@
+'use strict';
+
 /* eslint-disable no-param-reassign */
 /**
  * NOTE:
@@ -58,7 +60,7 @@ const color = (type, str) => `\u001b[${colors[type]}m${str}\u001b[0m`;
 function colorLines(name, str) {
   return str
     .split('\n')
-    .map(_str => {
+    .map((_str) => {
       return color(name, _str);
     })
     .join('\n');
@@ -117,10 +119,10 @@ function unifiedDiff(err, escape) {
   )}\n\n${lines.map(cleanUp).filter(notBlank).join('\n')}`;
 }
 
-const formatMochaError = test => {
+const formatMochaError = (test) => {
   // msg
   let msg;
-  const err = test.err;
+  const {err} = test;
   let message;
   if (err.message && typeof err.message.toString === 'function') {
     message = `${err.message}`;
@@ -131,8 +133,8 @@ const formatMochaError = test => {
   }
   let stack = err.stack || message;
   let index = message ? stack.indexOf(message) : -1;
-  let actual = err.actual;
-  let expected = err.expected;
+  let {actual} = err;
+  let {expected} = err;
   let escape = true;
 
   if (index === -1) {
@@ -150,9 +152,9 @@ const formatMochaError = test => {
   }
   // explicitly show diff
   if (
-    err.showDiff !== false &&
-    sameType(actual, expected) &&
-    expected !== undefined
+    err.showDiff !== false
+    && sameType(actual, expected)
+    && expected !== undefined
   ) {
     escape = false;
     if (!(utils.isString(actual) && utils.isString(expected))) {

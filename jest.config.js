@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = {
   testPathIgnorePatterns: ['/examples/', '/node_modules/', '/__mocha__/'],
   testMatch: [

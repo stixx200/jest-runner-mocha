@@ -1,3 +1,5 @@
+'use strict';
+
 const path = require('path');
 const { cosmiconfigSync } = require('cosmiconfig');
 
@@ -14,7 +16,7 @@ function normalize(jestConfig, options) {
 
   if (cliOptions.file) {
     const file = [].concat(cliOptions.file);
-    cliOptions.file = file.map(f => {
+    cliOptions.file = file.map((f) => {
       if (path.isAbsolute(f)) {
         return f;
       }

@@ -1,3 +1,7 @@
+/* eslint-disable import/no-unresolved */
+
+'use strict';
+
 require('should');
 const sum = require('./sum');
 

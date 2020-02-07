@@ -1,17 +1,13 @@
-const minimatch = require('minimatch');
+'use strict';
 
-const setupCollectCoverage = ({
+const minimatch = require('minimatch');
+const register = require('@babel/register');
+
+function setupCollectCoverage({
   rootDir,
-  collectCoverage,
   coveragePathIgnorePatterns,
   allowBabelRc,
-}) => {
-  if (!collectCoverage) {
-    return;
-  }
-
-  // eslint-disable-next-line import/no-dynamic-require, global-require
-  const register = require('@babel/register');
+}) {
   register({
     plugins: [
       [
@@ -26,16 +22,13 @@ const setupCollectCoverage = ({
     ],
     ignore: [
       /node_modules/,
-      filename =>
-        coveragePathIgnorePatterns.some(pattern =>
-          minimatch(filename, pattern),
-        ),
+      filename => coveragePathIgnorePatterns.some(pattern => minimatch(filename, pattern)),
     ],
     babelrc: allowBabelRc,
     // compact: true,
     retainLines: true,
     sourceMaps: 'inline',
   });
-};
+}
 
 module.exports = setupCollectCoverage;

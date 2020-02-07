@@ -5,12 +5,14 @@
 
 # It's a fork!
 
-It is an experimental  fork of https://github.com/rogeliog/jest-runner-mocha with some experimental
-features:
+It is an experimental  fork of 
+[jest-runner-mocha](https://github.com/rogeliog/jest-runner-mocha)
+ with some amazing features and fixes:
 
 * Support for mocha custom version
 * Support for `setupFilesAfterEnv`
 * Support for custom `clearMocks` implementation (ex. for sinon)
+* Support for jest flag `coverageProvider` `v8` (node 10+ only)
 * See more in changelog!
 
 ## Usage

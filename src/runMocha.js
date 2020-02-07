@@ -1,3 +1,5 @@
+'use strict';
+
 const Mocha = require('mocha');
 const { CoverageInstrumenter } = require('collect-v8-coverage');
 const { fileURLToPath } = require('url');
@@ -27,10 +29,8 @@ async function runMocha({ config, testPath, globalConfig }) {
   }
   function shouldInstrument(file) {
     return !(
-      /node_modules/.test(file) ||
-      config.coveragePathIgnorePatterns.some(pattern =>
-        minimatch(file, pattern),
-      )
+      /node_modules/.test(file)
+      || config.coveragePathIgnorePatterns.some(pattern => minimatch(file, pattern))
     );
   }
   function getAllV8CoverageInfoCopy() {
@@ -42,13 +42,14 @@ async function runMocha({ config, testPath, globalConfig }) {
       .filter(res => res.url.startsWith('file://'))
       .map(res => ({ ...res, url: fileURLToPath(res.url) }))
       .filter(
-        res =>
+        (res) => {
           // TODO: will this work on windows? It might be better if `shouldInstrument` deals with it anyways
-          res.url.startsWith(config.rootDir) && shouldInstrument(res.url),
-        // this._fileTransforms.has(res.url) &&
-        //  shouldInstrument(res.url, this._coverageOptions, this._config),
+          return res.url.startsWith(config.rootDir) && shouldInstrument(res.url);
+          // this._fileTransforms.has(res.url) &&
+          //  shouldInstrument(res.url, this._coverageOptions, this._config),
+        },
       )
-      .map(result => {
+      .map((result) => {
         const transformedFile = result.url; // this._fileTransforms.get(result.url);
 
         return {
@@ -82,13 +83,14 @@ async function runMocha({ config, testPath, globalConfig }) {
         failures.push(test);
       });
       runner.on('pending', test => pending.push(test));
+      // eslint-disable-next-line no-param-reassign
       runner.externalFinish = new Promise((resolve, reject) => {
         runner.on('end', async () => {
           let v8Coverage;
           try {
             if (
-              globalConfig.collectCoverage &&
-              globalConfig.coverageProvider === 'v8'
+              globalConfig.collectCoverage
+              && globalConfig.coverageProvider === 'v8'
             ) {
               await stopCollectingV8Coverage();
               v8Coverage = getAllV8CoverageInfoCopy();
@@ -99,6 +101,7 @@ async function runMocha({ config, testPath, globalConfig }) {
               pending,
               failures,
               passes,
+              // eslint-disable-next-line no-underscore-dangle
               coverage: global.__coverage__,
               jestTestPath: testPath,
             });
@@ -131,7 +134,6 @@ async function runMocha({ config, testPath, globalConfig }) {
       setupCollectCoverage({
         filename: testPath,
         rootDir: config.rootDir,
-        collectCoverage: globalConfig.collectCoverage,
         coveragePathIgnorePatterns: config.coveragePathIgnorePatterns,
         allowBabelRc: coverageOptions.useBabelRc,
       });
@@ -139,7 +141,7 @@ async function runMocha({ config, testPath, globalConfig }) {
   }
 
   if (config.setupFilesAfterEnv) {
-    config.setupFilesAfterEnv.forEach(path => {
+    config.setupFilesAfterEnv.forEach((path) => {
       // eslint-disable-next-line global-require,import/no-dynamic-require
       const module = require(path);
       if (config.clearMocks && module.clearMocks) {

@@ -1,3 +1,5 @@
+'use strict';
+
 const semver = require('semver');
 
 const runJest = require('./runJest');
@@ -6,10 +8,9 @@ function normalize(res) {
   return res
     .split('\n')
     .filter(
-      line =>
-        !line.includes(
-          'ExperimentalWarning: The fs.promises API is experimental',
-        ),
+      line => !line.includes(
+        'ExperimentalWarning: The fs.promises API is experimental',
+      ),
     )
     .join('\n');
 }

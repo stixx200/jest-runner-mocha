@@ -1,5 +1,7 @@
-const runJest = require('./runJest');
+'use strict';
+
 const semver = require('semver');
+const runJest = require('./runJest');
 
 const normalize = res => res.replace(' [ERR_ASSERTION]', '');
 

@@ -1,13 +1,12 @@
+'use strict';
+
 const toTestResult = require('../toTestResult');
 
 const jestTestPath = 'path/to/file';
 const start = Date.UTC(2000, 0, 1, 0, 0, 0, 0);
 const end = start + 1000;
 
-const withDescribe = (title, test) =>
-  Object.assign({}, test, {
-    parent: { title },
-  });
+const withDescribe = (title, test) => ({ ...test, parent: { title }});
 
 const passingTest = {
   duration: 1,

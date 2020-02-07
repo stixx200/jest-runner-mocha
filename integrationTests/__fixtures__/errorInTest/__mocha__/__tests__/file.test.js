@@ -1,3 +1,5 @@
+'use strict';
+
 /* eslint-disable no-unreachable */
 const assert = require('assert');
 

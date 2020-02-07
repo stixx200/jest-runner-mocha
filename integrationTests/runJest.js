@@ -1,3 +1,5 @@
+'use strict';
+
 const { spawn } = require('child_process');
 const path = require('path');
 const stripAnsi = require('strip-ansi');
@@ -5,28 +7,28 @@ const stripAnsi = require('strip-ansi');
 const rootDir = path.join(__dirname, '..');
 
 function spawnPromise(program2, args, options) {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     const stdout = [];
     const stderr = [];
     const ps = spawn(program2, args, options);
-    ps.stdout.on('data', newData => {
+    ps.stdout.on('data', (newData) => {
       stdout.push(newData);
     });
 
-    ps.stderr.on('data', newData => {
+    ps.stderr.on('data', (newData) => {
       stderr.push(newData);
     });
 
     // eslint-disable-next-line no-unused-vars
-    ps.on('close', code => {
+    ps.on('close', (code) => {
       resolve({ stderr: stderr.join('\n'), stdout: stdout.join('\n') });
     });
   });
 }
 
-const normalize = output =>
+function normalize(output) {
   // to remove color codes which can not be disabled othervise
-  stripAnsi(output)
+  return stripAnsi(output)
     .replace(/\(?\d*\.?\d+m?s\)?/g, '')
     .replace(/, estimated/g, '')
     .replace(new RegExp(rootDir, 'g'), '/mocked-path-to-jest-runner-mocha')
@@ -36,14 +38,12 @@ const normalize = output =>
     .replace(/ +\n/g, '\n')
     .replace(/\n+/g, '\n')
     .replace(/ +/g, ' ')
-    // sometimes random spaces are being added to test output at the end, remove them
+  // sometimes random spaces are being added to test output at the end, remove them
     .split('\n')
     .map(line => line.trim())
     .join('\n');
-
-const runJest = (project, options = []) => {
-  // eslint-disable-next-line
-  jasmine.DEFAULT_TIMEOUT_INTERVAL = 30000;
+}
+function runJest(project, options = []) {
   const projects = path.join(__dirname, '__fixtures__', project);
   const args = [
     './node_modules/.bin/jest',
@@ -67,6 +67,6 @@ const runJest = (project, options = []) => {
   }).then(({ stdout, stderr }) => {
     return `${normalize(stderr)}\n${normalize(stdout)}`;
   });
-};
+}
 
 module.exports = runJest;

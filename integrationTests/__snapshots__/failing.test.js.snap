@@ -5,13 +5,13 @@ exports[`Should fail v8 coverage on old node versions 1`] = `
 ● Test suite failed to run
 Node version v8.17.0 does not have coverage information!
 Please use node >= 10.12.0 or babel coverage.
-13 | async function collectV8Coverage() {
-14 | if (!semver.satisfies(process.version, '>= 10.12.0')) {
-> 15 | throw new Error(\`Node version \${process.version} does not have coverage information!
+15 | async function collectV8Coverage() {
+16 | if (!semver.satisfies(process.version, '>= 10.12.0')) {
+> 17 | throw new Error(\`Node version \${process.version} does not have coverage information!
 | ^
-16 | Please use node >= 10.12.0 or babel coverage.\`);
-17 | }
-18 | v8CoverageInstrumenter = new CoverageInstrumenter();
+18 | Please use node >= 10.12.0 or babel coverage.\`);
+19 | }
+20 | v8CoverageInstrumenter = new CoverageInstrumenter();
 at mocked-stack-trace
 Test Suites: 1 failed, 1 total
 Tests: 0 total

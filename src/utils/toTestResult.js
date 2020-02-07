@@ -1,3 +1,5 @@
+'use strict';
+
 const formatMochaError = require('../internal/formatMochaError');
 
 const hasError = (test = {}) => {
@@ -5,15 +7,14 @@ const hasError = (test = {}) => {
     test.err instanceof Error || (test.err && Object.keys(test.err).length > 0)
   );
 };
-const toMochaError = test =>
-  hasError(test) ? `\n${formatMochaError(test)}\n\n` : null;
+const toMochaError = test => (hasError(test) ? `\n${formatMochaError(test)}\n\n` : null);
 
-const getFailureMessage = tests => {
+const getFailureMessage = (tests) => {
   const failureMessages = tests.filter(hasError).map(toMochaError);
   return failureMessages.length ? failureMessages.join('') : null;
 };
 
-const getAncestorTitle = test => {
+const getAncestorTitle = (test) => {
   if (test.parent && test.parent.title) {
     return [test.parent.title].concat(getAncestorTitle(test.parent));
   }
@@ -21,12 +22,14 @@ const getAncestorTitle = test => {
   return [];
 };
 
-const toTestResult = ({ stats, tests, failures, jestTestPath, coverage }) => {
+const toTestResult = ({
+  stats, tests, failures, jestTestPath, coverage,
+}) => {
   const effectiveTests = tests;
 
   // Merge failed tests that don't exist in the tests array so that we report
   // all tests even if an error occurs in a beforeEach block.
-  failures.forEach(test => {
+  failures.forEach((test) => {
     if (!tests.some(t => t === test)) {
       tests.push(test);
     }
@@ -55,7 +58,7 @@ const toTestResult = ({ stats, tests, failures, jestTestPath, coverage }) => {
     sourceMaps: {},
     testExecError: null,
     testFilePath: jestTestPath,
-    testResults: effectiveTests.map(test => {
+    testResults: effectiveTests.map((test) => {
       const failureMessage = toMochaError(test);
       return {
         ancestorTitles: getAncestorTitle(test),

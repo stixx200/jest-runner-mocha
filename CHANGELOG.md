@@ -1,5 +1,7 @@
 ## Changelog
 
+## 3.1.3
+* Update README.
 
 ## 3.1.2
 * Fix `babel-register` load.

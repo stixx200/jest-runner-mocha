@@ -31,3 +31,22 @@ file.test.js | 100 | 100 | 100 | 100 |
 --------------|---------|----------|---------|---------|-------------------
 "
 `;
+
+exports[`Works when it has only passing tests and --coverage with v8 1`] = `
+"PASS integrationTests/__fixtures__/passing/__mocha__/__tests__/file.test.js
+My tests
+✓ This test passes
+Test Suites: 1 passed, 1 total
+Tests: 1 passed, 1 total
+Snapshots: 0 total
+Time:
+Ran all test suites.
+
+--------------|---------|----------|---------|---------|-------------------
+File | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
+--------------|---------|----------|---------|---------|-------------------
+All files | 100 | 100 | 100 | 100 |
+file.test.js | 100 | 100 | 100 | 100 |
+--------------|---------|----------|---------|---------|-------------------
+"
+`;

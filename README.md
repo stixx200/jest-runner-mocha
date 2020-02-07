@@ -1,7 +1,7 @@
-[![Build Status](https://travis-ci.com/jehy/jest-runner-mocha.svg?branch=master)](https://travis-ci.com/jehy/jest-runner-mocha) [![npm version](https://badge.fury.io/js/%40kernel-panic%2Fjest-runner-mocha.svg)](https://badge.fury.io/js/%40kernel-panic%2Fjest-runner-mocha)
-[![dependencies Status](https://david-dm.org/jehy/jest-runner-mocha/status.svg)](https://david-dm.org/jehy/jest-runner-mocha)
-[![devDependencies Status](https://david-dm.org/jehy/jest-runner-mocha/dev-status.svg)](https://david-dm.org/jehy/jest-runner-mocha?type=dev)
-[![Known Vulnerabilities](https://snyk.io/test/github/jehy/jest-runner-mocha/badge.svg)](https://snyk.io/test/github/jehy/jest-runner-mocha)
+[![Build Status](https://travis-ci.com/jehy/jest-runner-mocha-next.svg?branch=master)](https://travis-ci.com/jehy/jest-runner-mocha-next) [![npm version](https://badge.fury.io/js/jest-runner-mocha-next.svg)](https://badge.fury.io/js/jest-runner-mocha-next)
+[![dependencies Status](https://david-dm.org/jehy/jest-runner-mocha-next/status.svg)](https://david-dm.org/jehy/jest-runner-mocha-next)
+[![devDependencies Status](https://david-dm.org/jehy/jest-runner-mocha-next/dev-status.svg)](https://david-dm.org/jehy/jest-runner-mocha-next?type=dev)
+[![Known Vulnerabilities](https://snyk.io/test/github/jehy/jest-runner-mocha-next/badge.svg)](https://snyk.io/test/github/jehy/jest-runner-mocha-next)
 
 # It's a fork!
 
@@ -17,11 +17,11 @@ features:
 
 ### Install
 
-Install `jest`_(it needs Jest 21+)_ and `@kernel-panic/jest-runner-mocha`
+Install `jest`_(it needs Jest 21+)_ and `jest-runner-mocha-next`
 
 ```bash
 
-npm install --save-dev jest @kernel-panic/jest-runner-mocha
+npm install --save-dev jest jest-runner-mocha-next
 
 ```
 
@@ -31,7 +31,7 @@ In your `package.json`
 ```json
 {
   "jest": {
-    "runner": "@kernel-panic/jest-runner-mocha"
+    "runner": "jest-runner-mocha-next"
   }
 }
 ```
@@ -39,7 +39,7 @@ In your `package.json`
 Or in `jest.config.js`
 ```js
 module.exports = {
-  runner: '@kernel-panic/jest-runner-mocha',
+  runner: 'jest-runner-mocha-next',
 }
 ```
 

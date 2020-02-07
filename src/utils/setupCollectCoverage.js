@@ -1,13 +1,16 @@
 'use strict';
 
 const minimatch = require('minimatch');
-const register = require('@babel/register');
 
 function setupCollectCoverage({
   rootDir,
   coveragePathIgnorePatterns,
   allowBabelRc,
 }) {
+  // HERE BE DRAGONS
+  // Needs to be loaded dynamically otherwise will instrument all your code...
+  // eslint-disable-next-line global-require
+  const register = require('@babel/register');
   register({
     plugins: [
       [

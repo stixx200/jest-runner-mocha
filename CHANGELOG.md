@@ -1,6 +1,9 @@
 ## Changelog
 
 
+## 3.1.2
+* Fix `babel-register` load.
+
 ## 3.1.1
 
 * Throw error when trying to use v8 coverage on incompatible node version.

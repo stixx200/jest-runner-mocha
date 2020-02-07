@@ -1,5 +1,9 @@
 ## master
 
+## 3.1.0
+
+Experimental support for `--coverageProvider v8` option.
+
 ## 3.0.0
 
 Update all deps (can be breaking change), remove lock files, fix tests.

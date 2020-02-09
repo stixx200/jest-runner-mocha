@@ -51,6 +51,8 @@ function runJest(project, options = []) {
     '--no-watchman',
     '--no-cache',
     '--no-colors',
+    '--coverageReporters',
+    'text',
     '--projects',
     `${projects}`,
   ].concat(options);

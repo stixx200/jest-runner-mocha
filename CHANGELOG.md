@@ -1,5 +1,8 @@
 ## Changelog
 
+## 3.1.4
+* Add `diff` as a dependency like it should be.
+
 ## 3.1.3
 * Update README.
 

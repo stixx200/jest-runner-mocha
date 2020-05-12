@@ -1,5 +1,10 @@
 ## Changelog
 
+## 3.1.5
+* Process error that can happen on `clearMocks` call;
+* Run `clearMocks` at the end of suite instead of the beginning;
+* Pass `suite` to `clearMocks` implementation;
+
 ## 3.1.4
 * Add `diff` as a dependency like it should be.
 

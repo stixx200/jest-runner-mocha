@@ -118,10 +118,15 @@ Just make an export with a clearMocks function in your `setupFilesAfterEnv`, lik
 'use strict';
 
 const sinon = require('sinon');
+const nock = require('nock');
 
 module.exports = {
-	clearMocks: () => {
+	clearMocks: (suite) => {
 		sinon.sandbox.restore();
+		if(!nock.isDone()) {
+			console.log(`Warning: pending mocks in ${suite.file}: ${nock.pendingMocks()}`);
+			nock.cleanAll();
+		}
 	}
 };
 

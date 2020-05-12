@@ -33,7 +33,7 @@
     ]}],
     "promise/no-return-in-finally": ["error"],
     "brace-style": ["error", "1tbs", { "allowSingleLine": true }],
-    "sonarjs/cognitive-complexity": ["error", 40],
+    "sonarjs/cognitive-complexity": ["error", 45],
     "strict": [
       "error",
       "global"

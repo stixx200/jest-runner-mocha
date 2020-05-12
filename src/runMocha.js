@@ -71,11 +71,6 @@ async function runMocha({ config, testPath, globalConfig }) {
       const failures = [];
       const passes = [];
 
-      runner.on('suite', () => {
-        if (clearMocks) {
-          clearMocks();
-        }
-      });
       runner.on('test end', test => tests.push(test));
       runner.on('pass', test => passes.push(test));
       runner.on('fail', (test, err) => {
@@ -85,6 +80,15 @@ async function runMocha({ config, testPath, globalConfig }) {
       runner.on('pending', test => pending.push(test));
       // eslint-disable-next-line no-param-reassign
       runner.externalFinish = new Promise((resolve, reject) => {
+        runner.on('suite end', (s) => {
+          if (clearMocks) {
+            try {
+              clearMocks(s);
+            } catch (err) {
+              reject(err);
+            }
+          }
+        });
         runner.on('end', async () => {
           let v8Coverage;
           try {

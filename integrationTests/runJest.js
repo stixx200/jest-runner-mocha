@@ -29,7 +29,7 @@ function spawnPromise(program2, args, options) {
 function normalize(output) {
   // to remove color codes which can not be disabled othervise
   return stripAnsi(output)
-    .replace(/\(?\d*\.?\d+m?s\)?/g, '')
+    .replace(/\(?\d*\.?\d+ ?m?s\)?/g, '')
     .replace(/, estimated/g, '')
     .replace(new RegExp(rootDir, 'g'), '/mocked-path-to-jest-runner-mocha')
     .replace(new RegExp('.*at .*\\n', 'g'), 'mocked-stack-trace')

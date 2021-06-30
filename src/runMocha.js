@@ -83,6 +83,10 @@ const runMocha = ({ config, testPath, globalConfig }) => {
 
     mocha.addFile(testPath);
 
+    if (globalConfig.testNamePattern) {
+      mocha.grep(globalConfig.testNamePattern);
+    }
+
     try {
       if (mochaOptions.ui) {
         mocha.ui(mochaOptions.ui).run();
